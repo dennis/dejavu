@@ -18,6 +18,8 @@ private:
   container_t container;
   friend class AnimationView;
 
+  int views;  // Number of outstanding views
+
 public:
   typedef container_t::value_type value_type;
 
@@ -35,6 +37,7 @@ public:
   const_iterator end() const { return container.end(); }
 
   AnimationView* getView(); // user needs to free this, when its not needed
+
   void load(const std::string, int, int);
   void push_back(boost::shared_ptr<Gosu::Image>);
 };
@@ -53,6 +56,12 @@ public:
   }
 
   AnimationView(Animation* a) : idx(0), anim(a) {
+    anim->views++;
+  }
+
+  ~AnimationView() {
+    if(anim)
+      anim->views--;
   }
 
   boost::shared_ptr<Gosu::Image> getImage() {

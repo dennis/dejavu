@@ -1,3 +1,5 @@
+#include <cassert>
+
 #include "animation.h"
 #include "game.h"
 #include "hero.h"
@@ -12,12 +14,13 @@ void Animation::init_lua(LuaVM& lua) {
   ];
 }
 
-Animation::Animation() {
+Animation::Animation() : views(0) {
   std::cout << this << " Animation()" << std::endl;
 }
 
 Animation::~Animation() {
   std::cout << this << " ~Animation()" << std::endl;
+  assert(views == 0 && " ERROR This Animation still got active views to it!");
 }
 
 AnimationView* Animation::getView() {
