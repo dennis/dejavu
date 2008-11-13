@@ -38,6 +38,7 @@ public:
 
   AnimationView* getView(); // user needs to free this, when its not needed
 
+  void clear();
   void load(const std::string, int, int);
   void push_back(boost::shared_ptr<Gosu::Image>);
 };

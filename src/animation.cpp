@@ -10,7 +10,8 @@ void Animation::init_lua(LuaVM& lua) {
   [
     class_<Animation>("Animation")
       .def(constructor<>())
-      .def("load", &Animation::load)
+      .def("load",  &Animation::load)
+      .def("clear", &Animation::clear)
   ];
 }
 
@@ -25,6 +26,10 @@ Animation::~Animation() {
 
 AnimationView* Animation::getView() {
   return new AnimationView(this);
+}
+
+void Animation::clear() {
+  container.clear();
 }
 
 void Animation::load(const std::string filename, int height, int width) {
