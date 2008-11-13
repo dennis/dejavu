@@ -1,0 +1,4 @@
+*.o
+.deps
+dejavu
+config.h.in~

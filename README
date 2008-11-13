@@ -1,0 +1,7 @@
+DejaVu is a small 2d platform game. And its not finished :)
+
+To compile, you need to get friendly with:
+	g++
+	lua50
+	luabind
+	gosu
