@@ -20,7 +20,7 @@ Hero::Hero(Gosu::Graphics& graphics) : current(nullptr) {
 
 void Hero::draw() {
   if(current) {
-    Gosu::Image* image = current->getImage(Gosu::milliseconds()/100%current->size());
+    boost::shared_ptr<Gosu::Image> image = current->getImage(Gosu::milliseconds()/100%current->size());
     image->draw(xpos, ypos, 0);
   }
 }

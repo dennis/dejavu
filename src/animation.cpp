@@ -20,7 +20,7 @@ Animation::~Animation() {
   std::cout << this << " ~Animation()" << std::endl;
 }
 
-AnimationView* Animation::getView() { // FIXME use boost::clever-pointer
+AnimationView* Animation::getView() {
   return new AnimationView(this);
 }
 

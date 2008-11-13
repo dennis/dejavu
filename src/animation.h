@@ -34,7 +34,7 @@ public:
   iterator end() { return container.end(); }
   const_iterator end() const { return container.end(); }
 
-  AnimationView* getView();
+  AnimationView* getView(); // user needs to free this, when its not needed
   void load(const std::string, int, int);
   void push_back(boost::shared_ptr<Gosu::Image>);
 };
@@ -55,13 +55,13 @@ public:
   AnimationView(Animation* a) : idx(0), anim(a) {
   }
 
-  Gosu::Image* getImage() {
+  boost::shared_ptr<Gosu::Image> getImage() {
     return getImage(idx);
   }
 
-  Gosu::Image* getImage(index_type i) {
+  boost::shared_ptr<Gosu::Image> getImage(index_type i) {
     assert(anim);
-    return anim->container.at(i).get();
+    return anim->container.at(i);
   }
 
   int size() {
@@ -69,49 +69,5 @@ public:
   }
 };
 
-/*
-template<typename T, typename H>
-class View {
-private:
-  T data;
-  H helper;
-
-public:
-  View(T t) : data(t) {
-  }
-  operator Gosu::Image*() const {
-    return helper();
-  }
-};
-
-class ImageGetFunctor {
-public:
-  Gosu::Image* image;
-
-  ImageGetFunctor(Gosu::Image* i) : image(i) {
-  }
-
-  Gosu::Image* operator()() {
-    return i;
-  }
-};
-
-class AnimationGetFunctor {
-public:
-  typedef unsigned int index_type;
-  Animation*  anim;
-  index_type idx;
-
-  AnimationGetFunctor(Animation* a) : anim(a), idx(0) {
-  }
-
-  Gosu::Image* operator()() {
-    return &anim.container.at(0).get();
-  }
-}
-
-typedef View<Gosu::Image, ImageGetFunctor> ImageView;
-typedef View<Animation, AnimationGetFunctor> AnimationView;
-*/
 #endif
 // ex: ts=2 sw=2 et sr
