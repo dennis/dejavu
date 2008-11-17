@@ -1,4 +1,5 @@
 #include <cassert>
+#include <iostream>
 
 #include "animation.h"
 #include "game.h"
@@ -12,10 +13,12 @@ void Animation::init_lua(LuaVM& lua) {
       .def(constructor<>())
       .def("load",  &Animation::load)
       .def("clear", &Animation::clear)
+      .def("get_fps", &Animation::get_fps)
+      .def("set_fps", &Animation::set_fps)
   ];
 }
 
-Animation::Animation() : views(0) {
+Animation::Animation() : views(0), fps(10) {
   std::cout << this << " Animation()" << std::endl;
 }
 
@@ -29,6 +32,7 @@ AnimationView* Animation::getView() {
 }
 
 void Animation::clear() {
+  std::cout << this << " Animation::clear()" << std::endl;
   container.clear();
 }
 

@@ -1,3 +1,5 @@
+#include <iostream>
+
 #include "common.h"
 #include "animation.h"
 #include "hero.h"
@@ -18,9 +20,13 @@ Hero::Hero(Gosu::Graphics& graphics) : current(nullptr) {
   xpos = ypos = 0;
 }
 
+void Hero::update() {
+  if(current) 
+    current->update();
+}
 void Hero::draw() {
   if(current) {
-    boost::shared_ptr<Gosu::Image> image = current->getImage(Gosu::milliseconds()/100%current->size());
+    boost::shared_ptr<Gosu::Image> image = current->getImage();
     image->draw(xpos, ypos, 0);
   }
 }

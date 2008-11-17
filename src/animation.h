@@ -6,12 +6,12 @@
 
 #include <vector>
 #include <boost/shared_ptr.hpp>
-#include <iostream>
 
 #include "common.h"
 #include "luavm.h"
 
 class AnimationView;
+
 class Animation {
 private:
   typedef std::vector<boost::shared_ptr<Gosu::Image> > container_t;
@@ -19,6 +19,7 @@ private:
   friend class AnimationView;
 
   int views;  // Number of outstanding views
+  unsigned char fps;
 
 public:
   typedef container_t::value_type value_type;
@@ -41,6 +42,14 @@ public:
   void clear();
   void load(const std::string, int, int);
   void push_back(boost::shared_ptr<Gosu::Image>);
+
+  void set_fps(unsigned char f) {
+    fps = f;
+  }
+
+  unsigned char get_fps() const {
+    return fps;
+  }
 };
 
 class AnimationView {
@@ -51,18 +60,31 @@ public:
 
 private:
   Animation*  anim;
+  int         ticks_per_frame;
+
+  int         ticks_since_last_change;
 
 public:
   AnimationView() : idx(0), anim(nullptr) {
   }
 
   AnimationView(Animation* a) : idx(0), anim(a) {
+    ticks_per_frame = 60/anim->get_fps();
     anim->views++;
   }
 
   ~AnimationView() {
     if(anim)
       anim->views--;
+  }
+
+  void update() {
+    ticks_since_last_change++;
+
+    while(ticks_since_last_change > ticks_per_frame) {
+      idx = ++idx % size();
+      ticks_since_last_change-=ticks_per_frame;
+    }
   }
 
   boost::shared_ptr<Gosu::Image> getImage() {

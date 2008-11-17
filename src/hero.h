@@ -21,7 +21,9 @@ public:
   // c'tor
   Hero(Gosu::Graphics&);
 
+  void update();
   void draw();
+
   void show(Animation&);
 };
 #endif

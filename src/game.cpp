@@ -32,6 +32,7 @@ void GameWindow::update() {
   else
     hero.stop();
   */
+  hero.update();
 }
 
 void GameWindow::draw() {
