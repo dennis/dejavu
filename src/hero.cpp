@@ -14,7 +14,7 @@ void Hero::init_lua(LuaVM& lua) {
   ];
 }
 
-Hero::Hero(Gosu::Graphics& graphics) : current(nullptr) {
+Hero::Hero(Gosu::Graphics& graphics)  {
   std::wstring filename;
 
   xpos = ypos = 0;
@@ -34,8 +34,6 @@ void Hero::draw() {
 void Hero::show(Animation& a) {
   std::cout << "show anim! " << &a << std::endl;
 
-  if( current ) 
-    delete current;
   current = a.getView();
 }
 

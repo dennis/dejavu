@@ -27,8 +27,8 @@ Animation::~Animation() {
   assert(views == 0 && " ERROR This Animation still got active views to it!");
 }
 
-AnimationView* Animation::getView() {
-  return new AnimationView(this);
+boost::shared_ptr<AnimationView> Animation::getView() {
+  return boost::shared_ptr<AnimationView>(new AnimationView(this));
 }
 
 void Animation::clear() {

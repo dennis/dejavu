@@ -37,7 +37,7 @@ public:
   iterator end() { return container.end(); }
   const_iterator end() const { return container.end(); }
 
-  AnimationView* getView(); // user needs to free this, when its not needed
+  boost::shared_ptr<AnimationView> getView();
 
   void clear();
   void load(const std::string, int, int);

@@ -3,6 +3,7 @@
 
 #include <Gosu/Gosu.hpp>
 #include <Gosu/AutoLink.hpp>
+#include <boost/shared_ptr.hpp>
 
 #include "common.h"
 #include "animation.h"
@@ -11,7 +12,7 @@ class LuaVM;
 
 class Hero {
 private:
-  AnimationView*        current;
+  boost::shared_ptr<AnimationView>    current;
 
   int xpos, ypos;
 
