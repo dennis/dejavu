@@ -1,0 +1,7 @@
+DEBT:
+
+TODO
+- BUG: Shift+<num> dosn't work in Gosu::TextInput 
+  So chars like '=' is impossible to write. Which limits the
+  usefulness of the textinput greatly :(
+  Not sure how to fix this

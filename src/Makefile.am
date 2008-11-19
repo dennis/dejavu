@@ -6,11 +6,13 @@ dejavu_SOURCES = \
 	game.cpp  \
 	hero.cpp \
 	luavm.cpp \
-	main.cpp 
+	main.cpp \
+	textfield.cpp
 
 noinst_HEADERS = \
 	animation.h \
 	common.h \
 	game.h \
 	hero.h \
-	luavm.h 
+	luavm.h  \
+	textfield.h

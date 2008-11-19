@@ -49,6 +49,10 @@ public:
     }
   }
 
+  void perform(std::string line) {
+    lua_dostring(state, line.c_str());
+  }
+
   int get_global_number(std::string name) {
     lua_getglobal(state, name.c_str());
     if(!lua_isnumber(state, -1)) {

@@ -24,6 +24,7 @@ void Hero::update() {
   if(current) 
     current->update();
 }
+
 void Hero::draw() {
   if(current) {
     boost::shared_ptr<Gosu::Image> image = current->getImage();

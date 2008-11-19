@@ -1,11 +1,10 @@
 #include <boost/scoped_ptr.hpp>
 
 #include "luavm.h"
-#include "hero.h"
 #include "game.h"
 #include "common.h"
 
-int main(int argc, char* argv[]) {
+int main(int /*argc*/, char* /*argv*/[]) {
   LuaVM       lua;
 
   lua.load(get_data_dir() + "lua/init.lua");
