@@ -4,7 +4,6 @@
 #include <string>
 
 std::string get_data_dir();
-std::wstring get_data_dirw();
 
 const int nullptr = 0;
 

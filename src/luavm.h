@@ -9,6 +9,7 @@ extern "C" {
 #include <luabind/luabind.hpp>
 #include <stdexcept>
 #include <sstream>
+#include <Gosu/Utility.hpp>
 
 class LuaVM {
 private:
@@ -72,10 +73,7 @@ public:
       throw std::runtime_error(msg.str());
     }
 
-    // convert string to wstring 
-    std::string str(lua_tostring(state, -1));
-    std::wstring wstr(str.begin(),str.end());
-    return wstr;
+    return Gosu::widen(lua_tostring(state,-1));
   }
 
   template<typename T>

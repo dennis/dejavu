@@ -47,10 +47,7 @@ void GameWindow::draw() {
 
 
 void GameWindow::load_background(const std::string str) { // Callable from lua
-  // convert string to wstring 
-  std::wstring wstr(str.begin(),str.end());
-  std::wstring filename = get_data_dirw() + wstr;
-  background_image.reset(new Gosu::Image(graphics(), filename));
+  background_image.reset(new Gosu::Image(graphics(), Gosu::widen(str)));
 }
 
 void GameWindow::out(const std::string) {
