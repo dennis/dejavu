@@ -29,8 +29,6 @@ GameWindow::GameWindow(LuaVM& lvm) : Window(640, 480, false), show_console(false
   const int fontsize = 12;
   font.reset(new Gosu::Font(graphics(), Gosu::defaultFontName(), fontsize));
   console_input.reset(new TextField(*this, *font, 0, 480-fontsize-5));
-
-  input().setTextInput(console_input.get());
 }
 
 void GameWindow::update() {
@@ -74,7 +72,7 @@ void GameWindow::console(bool enabled) {
 void GameWindow::buttonDown(Gosu::Button btn) {
   if(btn == Gosu::kbEscape) {
     if(input().textInput())
-      input().setTextInput(0);
+      console(false);
     else
       close();
   }
